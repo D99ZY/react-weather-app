@@ -1,0 +1,37 @@
+/* Search */
+.search {
+    margin: 1.5rem 0rem 1rem 0rem;
+}
+
+/* Form */
+.search form {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-template-rows: 1fr;
+    width: 100%;
+}
+
+/* Input */
+.search input {
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    grid-column: 1;
+    grid-row: 1;
+    outline: none;
+    padding: 0.5rem 1rem;
+}
+
+/* Button */
+.search button {
+    background-color: #ff6600;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0rem 0rem 0rem 1rem;
+    padding: 0rem 0.5rem;
+}
