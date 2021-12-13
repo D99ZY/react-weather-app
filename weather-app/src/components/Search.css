@@ -35,3 +35,20 @@
     margin: 0rem 0rem 0rem 1rem;
     padding: 0rem 0.5rem;
 }
+
+
+@media screen and (max-width: 600px) {
+    /* Form */
+    .search form {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1.15fr;
+    }
+
+    /* Button */
+    .search button {
+        grid-column: 1;
+        grid-row: 2;
+        margin: 0.5rem 0rem 0rem 0rem;
+        padding: 0.5rem 1rem;
+    }
+}

@@ -1,3 +1,16 @@
+/* Location */
 .location {
-    margin: 0rem
+    display: flex;
+    flex-direction: column;
+}
+
+/* .location {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+} */
+
+.location h4 {
+    margin-left: 0.25rem;
 }

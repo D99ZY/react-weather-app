@@ -1,15 +1,19 @@
+/* Font Imports */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap');
 
+/* CSS Variables */
 :root {
     --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+/* Remove Default Properties */
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     font-family: 'Quicksand', sans-serif;
     font-size: 62.5%; /* default: 16px; 16px x 62.5% = 10px = 1rem */
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
 
 /* HTML Tags */
@@ -32,7 +36,7 @@ h3 {
 }
 
 h4 {
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     font-weight: 400;
     letter-spacing: 0.05rem;
 }
@@ -43,12 +47,13 @@ p {
 }
 
 label, input, span, button {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 400;
 }
 
 /* App */
 .app {
+    align-items: center;
     background-color: #f7f7f7;
     background-image: url('./assets/default-background.jpg');
     background-position: center center;
@@ -56,40 +61,82 @@ label, input, span, button {
     background-size: cover;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
 
 .app--container {
     background-color: rgba(0, 0, 0, 0.625);
-    border-radius: 5px;
+    border-radius: 10px;
     color: #fff;
     margin: 3rem 0rem;
     padding: 1rem 2rem;
-    width: 20%;
+    width: 25%;
 }
 
-@media screen and (max-width: 1200px) {
+/* Media Queries */
+@media screen and (max-width: 1680px) {
     .app--container {
         width: 30%;
     }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1440px) {
+    .app--container {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
     .app--container {
         width: 40%;
     }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 960px) {
     .app--container {
         width: 50%;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 840px) {
     .app--container {
         width: 60%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .app--container {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .app--container {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .app--container {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .app--container {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .app--container {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .app--container {
+        width: 90%;
     }
 }
