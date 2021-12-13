@@ -3,7 +3,7 @@ import './Search.css';
 
 const Search = () => {
     // State
-    const [text, setText] =useState<string>('');
+    const [text, setText] = useState<string>('');
 
     return (
         <div className='search'>
