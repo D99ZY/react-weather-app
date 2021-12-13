@@ -11,6 +11,7 @@ const Location = ({ city, country }: LocationProps) => {
             <h2>
                 {city}, {country}
             </h2>
+            <h4>14:32 13/12/2021</h4>
         </div>
     );
 };
