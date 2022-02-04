@@ -5,9 +5,16 @@ const Search = () => {
     // State
     const [text, setText] = useState<string>('');
 
+    // Update weather in global state
+    const onSubmitHandler = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        console.log('Text', text);
+    }
+
     return (
         <div className='search'>
-            <form>
+            <form onSubmit={onSubmitHandler}>
                 <input 
                     type='text'
                     value={text}
