@@ -1,15 +1,18 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 import './Location.css';
 
-interface LocationProps {
-    city: string;
-    country: string;
-}
+const Location = () => {
 
-const Location = ({ city, country }: LocationProps) => {
+    // Context
+    const {
+        state: { weather }
+    } = useContext(GlobalContext)
+
     return (
         <div className='location'>
             <h2>
-                {city}, {country}
+                {weather.city}, {weather.country}
             </h2>
             <h4>14:32 13/12/2021</h4>
         </div>
