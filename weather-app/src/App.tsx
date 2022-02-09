@@ -1,10 +1,11 @@
+import { GlobalProvider } from './context/GlobalState';
 import Location from './components/Location';
 import Weather from './components/Weather';
 import Search from './components/Search';
-import { GlobalProvider } from './context/GlobalState';
 import './App.css';
 
-function App() {
+function App() {    
+
     return (
         <GlobalProvider>
             <div className="app">
