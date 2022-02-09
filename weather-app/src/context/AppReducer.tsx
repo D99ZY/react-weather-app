@@ -7,6 +7,11 @@ const AppReducer = (state: GlobalState, action: Action): GlobalState => {
                 ...state,
                 weather: action.payload,
             };
+        case 'UPDATE_TIME':
+            return {
+                ...state,
+                time: action.payload,
+            };
         default:
             return state;
     }
