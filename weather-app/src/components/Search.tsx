@@ -9,27 +9,27 @@ const Search = () => {
     const { dispatch } = useContext(GlobalContext);
 
     // State
-    const [text, setText] = useState<string>('');
+    const [city, setCity] = useState<string>('');
 
     // Constants
-    const BASE_URL: string = 'https://api.openweathermap.org/data/2.5/weather';
+    const WEATHER_BASE_URL: string = 'https://api.openweathermap.org/data/2.5/weather';
     const WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY;
 
     // Submit button function
     const onSubmitHandler = (e: React.FormEvent) => {
         e.preventDefault(); // Prevent page reload
 
-        // Check for empty text box
-
-
-        fetchWeather();
+        // Check textbox is not empty
+        if (city !== '') {
+            fetchWeather();
+        }
     };
     
     // Update weather in global state
     const fetchWeather = () => {
         let newWeather: Weather;
 
-        fetch(BASE_URL + '?q=' + text + '&appid=' + WEATHER_API_KEY)
+        fetch(WEATHER_BASE_URL + '?q=' + city + '&appid=' + WEATHER_API_KEY)
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -38,26 +38,36 @@ const Search = () => {
                 }
             })
             .then((data) => {
+
                 newWeather = {
                     city: data.name,
                     country: data.sys.country,
+                    lat: data.coord.lat,
+                    long: data.coord.lon,
                     temperature: data.main.temp,
-                    conditions: data.weather[0].main
+                    conditions: data.weather[0].main,
                 };
+                
                 dispatch(updateWeather(newWeather));
             })
             .catch((err) => {
                 console.log('Error:', err);
             })
+            .finally(() => {
+                setCity('');
+            })
     };
 
+    // JSX
     return (
         <div className='search'>
             <form onSubmit={onSubmitHandler}>
                 <input 
                     type='text'
-                    value={text}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)}
+                    value={city}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setCity(e.target.value);
+                    }}
                     placeholder='Enter a new city'
                 />
                 <button>&gt;</button>
