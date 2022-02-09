@@ -3,7 +3,21 @@ import AppReducer from './AppReducer';
 import { GlobalState, Context } from './types';
 
 const initialState: GlobalState = {
-    weather: { city: 'London', country: 'GB', temperature: 14, conditions: 'Stormy' },
+    weather: { 
+        city: 'London', 
+        country: 'GB', 
+        lat: 51.5085,
+        long: -0.1257,
+        temperature: 281.2, 
+        conditions: 'Stormy', 
+    },
+    time: {
+        year: '2023',
+        month: '04',
+        day: '05',
+        hour: '11',
+        minute: '23',
+    },
 };
 
 // Create context
