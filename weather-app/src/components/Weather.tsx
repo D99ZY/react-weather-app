@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import './Weather.css';
 
@@ -16,46 +16,61 @@ const Weather = () => {
         state: { weather }
     } = useContext(GlobalContext);
 
+    // Initial temperature
+    let initialTemp: number = Math.round(((weather.temperature - 273.15) + Number.EPSILON) * 10) / 10;
+
     // State
     const [currentUnit, setCurrentUnit] = useState<unit>(0);
     const [nextUnit, setNextUnit] = useState<unit>(1);
-    const [temp, setTemp] = useState<number>(Math.round(((weather.temperature - 273.15) + Number.EPSILON) * 10) / 10);
+    const [temp, setTemp] = useState<number>(initialTemp);
+
+    // Convert temperature to appropriate unit
+    const convertTemp = useCallback((unit: unit): number => {
+        let temperature: number;
+        switch (unit) {
+            case 0:
+                temperature = Math.round(((weather.temperature - 273.15) + Number.EPSILON) * 10) / 10;
+                break;
+            case 1:
+                temperature = Math.round(((weather.temperature * (9/5) - 459.67) + Number.EPSILON) * 10) / 10;
+                break;
+            case 2:
+                temperature = Math.round(((weather.temperature) + Number.EPSILON) * 10) / 10;
+                break;
+            default:
+                temperature = Math.round(((weather.temperature - 273.15) + Number.EPSILON) * 10) / 10;
+        }
+        return temperature;
+    }, [weather.temperature]);
 
     // Change unit of temperature on button click
     const changeUnit = (e: React.MouseEvent<HTMLButtonElement>) => {
+        // Prevent page reload
         e.preventDefault();
-        console.log('handled');
 
         if (currentUnit === 0) {
-            setTemp(Math.round(((weather.temperature * (9/5) - 459.67) + Number.EPSILON) * 10) / 10);
+            setTemp(convertTemp(nextUnit));
             setCurrentUnit(1);
             setNextUnit(2);
         }
         else if (currentUnit === 1) {
-            setTemp(Math.round(((weather.temperature) + Number.EPSILON) * 10) / 10);
+            setTemp(convertTemp(nextUnit));
             setCurrentUnit(2);
             setNextUnit(0);
         }
         else {
-            setTemp(Math.round(((weather.temperature - 273.15) + Number.EPSILON) * 10) / 10);
+            setTemp(convertTemp(nextUnit));
             setCurrentUnit(0);
             setNextUnit(1);
         }
     };
 
+    // Update temperature on weather change
     useEffect(() => {
-        if (currentUnit === 0) {
-            setTemp(Math.round(((weather.temperature - 273.15) + Number.EPSILON) * 10) / 10);
-        }
-        else if (currentUnit === 1) {
-            setTemp(Math.round(((weather.temperature * (9/5) - 459.67) + Number.EPSILON) * 10) / 10);
-        }
-        else {
-            setTemp(Math.round(((weather.temperature) + Number.EPSILON) * 10) / 10);
-        }
-    }, [currentUnit, weather]);
+        setTemp(convertTemp(currentUnit));
+    }, [currentUnit, convertTemp, weather]);
 
-
+    // JSX
     return (
         <div className='weather'>
             <div className='button-container'>
